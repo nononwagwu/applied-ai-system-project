@@ -1,3 +1,12 @@
+# AI Music Recommendation System (RAG-Based)
+
+## Overview (New System)
+This project extends a previous content-based music recommender into an AI-powered system using Retrieval-Augmented Generation (RAG). The system retrieves relevant songs from a dataset and uses an AI model to generate personalized recommendations with explanations based on user input such as mood, genre, or activity.
+
+---
+
+## Original Project (Module 1–3)
+
 # 🎵 Music Recommender Simulation
 
 ## Project Summary
@@ -8,9 +17,9 @@ This project builds a simple content-based music recommender system. It represen
 
 ## How The System Works
 
-Modern recommendation systems like Spotify and YouTube use a combination of collaborative filtering and content-based filtering. Collaborative filtering uses patterns from similar users, while content-based filtering compares item features (such as genre or mood) to a user’s preferences. These systems rely on large amounts of user data like likes, skips, and listening time.
+Modern recommendation systems like Spotify and YouTube use a combination of collaborative filtering and content-based filtering. Collaborative filtering uses patterns from similar users, while content-based filtering compares item features (such as genre or mood) to a user’s preferences.
 
-In this simulation, a content-based approach is used. The system compares a user’s preferences with song features and assigns each song a score based on similarity. Genre and mood are prioritized to capture the overall vibe, while energy and tempo fine-tune the recommendations. Songs are ranked by score, and the top matches are recommended.
+In this simulation, a content-based approach is used. The system compares a user’s preferences with song features and assigns each song a score based on similarity. Genre and mood are prioritized, while energy and tempo refine the recommendations. Songs are ranked and the top matches are returned.
 
 ---
 
@@ -34,52 +43,99 @@ In this simulation, a content-based approach is used. The system compares a user
 
 - +2.0 points for genre match  
 - +1.0 point for mood match  
-- Energy is scored based on how close it is to the user’s preferred value  
-- Tempo is scored based on how close it is to the user’s preferred value  
+- Energy scored by similarity  
+- Tempo scored by similarity  
 
-Songs are ranked from highest to lowest score, and the top matches are recommended.
+Songs are ranked from highest to lowest score.
 
 ---
 
 ### System Flow
 
-1. Input: User preferences (genre, mood, energy, tempo)  
-2. Process: Loop through each song in the dataset  
-3. Compare each song to user preferences  
-4. Assign a score based on matches and similarity  
-5. Rank all songs by score  
-6. Output: Top 3–5 recommended songs  
-
----
-
-### Key Features Identified
-
-The most effective features for this recommender are:
-
-- genre – defines the style of music  
-- mood – captures emotional tone  
-- energy – measures intensity  
-- tempo_bpm – indicates speed  
-
-Genre and mood define the core vibe, while energy and tempo refine it.
+1. Input: User preferences  
+2. Compare against dataset  
+3. Score each song  
+4. Rank songs  
+5. Output top matches  
 
 ---
 
 ### Potential Bias
 
-This system may over-prioritize genre, which could cause it to ignore songs from other genres that still match the user’s mood and energy. It also assumes users have fixed preferences and does not adapt over time like real-world systems.
+The system may over-prioritize genre and does not adapt over time.
 
-![alt text](image.png)
 ---
-![alt text](image-1.png)
+
+## AI System Upgrade (Applied AI)
+
+### Core Functionality
+- Accepts natural language input (e.g., "chill study music")
+- Retrieves relevant songs from dataset
+- Generates recommendations with explanations
+
+---
+
+### AI Feature Used
+This system uses :contentReference[oaicite:0]{index=0}.  
+Relevant song data is retrieved and used to generate context-aware recommendations.
+
+---
+
+### Architecture Overview
+The system takes user input and processes it through a backend module. The backend retrieves relevant songs from the dataset and passes them into a generation step that produces explanations. The final recommendations are returned to the user. Logging is used to track inputs and outputs.
+
+---
+
+### System Diagram
+![System Diagram](assets/system-diagram.png)
+
+---
+
+### Sample Interactions
+
+**Input:** "chill study music"  
+**Output:** Recommended songs with explanation  
+
+**Input:** "high energy gym songs"  
+**Output:** Energetic song list with reasoning  
+
+---
+
+### Reliability and Testing
+- Tested multiple input types (mood, genre, activity)  
+- Logging confirms system behavior  
+- Works best when dataset contains relevant matches  
+- Some inputs return no results (dataset limitation)  
+
+---
+
+### Design Decisions
+- Used retrieval-based approach for consistency  
+- Focused on explainability (scores + reasoning)  
+- Structured system for future AI integration  
+
+---
+
+### Limitations and Ethics
+- Limited dataset reduces recommendation quality  
+- Possible genre bias  
+- Not adaptive like real-world systems  
+- Should not be relied on as universally accurate  
+
+---
+
+### Reflection
+This project demonstrated how structured data and scoring systems can be enhanced with AI techniques. It also highlighted the importance of testing, explainability, and system design.
+
+---
 
 ## Getting Started
 
-### Setup
+### Setup Instructions
 
-1. Create a virtual environment (optional but recommended):
+1. Clone the repository
 
+2. Create and activate a virtual environment:
 ```bash
 python -m venv .venv
-source .venv/bin/activate      # Mac or Linux
-.venv\Scripts\activate         # Windows
+.venv\Scripts\activate
